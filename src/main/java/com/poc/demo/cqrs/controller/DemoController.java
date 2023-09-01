@@ -34,7 +34,7 @@ public class DemoController {
     //    return Optional.ofNullable(userService.get(id)).orElseThrow(Exception::new);
     //}
    @PostMapping("/{userId}")
-   public User createUser(@PathVariable("userId") String userId, @PathVariable("userId") String name, @PathVariable("userId") String lastName) throws Exception {
+   public User createUser(@PathVariable("userId") String userId, @RequestParam("name") String name, @RequestParam("lastName") String lastName) throws Exception {
         return userAggregate.handleCreateUserCommand(new CreateUserCommand(userId,name,lastName));
    }
 }

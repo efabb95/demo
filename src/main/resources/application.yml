@@ -6,4 +6,4 @@ spring:
         emulator:
           enabled: true
         host-port: localhost:9080
-        project-id: local-project
+        project-id: prototyping-261511
