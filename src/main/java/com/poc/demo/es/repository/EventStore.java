@@ -1,12 +1,13 @@
 package com.poc.demo.es.repository;
 
 import com.poc.demo.es.events.Event;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Repository
 public class EventStore {
 
     private Map<String, List<Event>> store = new HashMap<>();

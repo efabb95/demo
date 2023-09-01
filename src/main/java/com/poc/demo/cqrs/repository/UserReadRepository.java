@@ -2,10 +2,12 @@ package com.poc.demo.cqrs.repository;
 
 import com.poc.demo.domain.UserAddress;
 import com.poc.demo.domain.UserContact;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class UserReadRepository {
     private final Map<String, UserAddress> userAddress = new HashMap<>();
 

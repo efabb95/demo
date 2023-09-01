@@ -6,7 +6,13 @@ import com.poc.demo.cqrs.repository.UserWriteRepository;
 import com.poc.demo.crud.repository.UserRepositoryInterface;
 import com.poc.demo.domain.User;
 import com.poc.demo.es.service.UserService;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserAggregate {
 
     private final UserWriteRepository writeRepository;

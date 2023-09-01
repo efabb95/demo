@@ -5,6 +5,7 @@ import com.poc.demo.crud.repository.UserRepositoryInterface;
 import com.poc.demo.domain.*;
 import com.poc.demo.es.events.*;
 import com.poc.demo.es.repository.EventStore;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 import java.util.Set;
 
+@Service
 public class UserService {
     private final EventStore repository;
     private final UserRepositoryInterface userRepository;
