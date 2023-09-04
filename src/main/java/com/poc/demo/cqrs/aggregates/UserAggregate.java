@@ -1,15 +1,9 @@
 package com.poc.demo.cqrs.aggregates;
 
 import com.poc.demo.cqrs.commands.CreateUserCommand;
-import com.poc.demo.cqrs.commands.UpdateUserCommand;
 import com.poc.demo.cqrs.repository.UserWriteRepository;
-import com.poc.demo.crud.repository.UserRepositoryInterface;
 import com.poc.demo.domain.User;
 import com.poc.demo.es.service.UserService;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,7 +12,7 @@ public class UserAggregate {
     private final UserWriteRepository writeRepository;
     private final UserService userService;
 
-    public UserAggregate(UserWriteRepository repository, UserRepositoryInterface userRepositoryInterface, UserService userService) {
+    public UserAggregate(UserWriteRepository repository, UserService userService) {
         this.writeRepository = repository;
         this.userService = userService;
     }
@@ -30,11 +24,11 @@ public class UserAggregate {
         return user;
     }
 
-    public User handleUpdateUserCommand(UpdateUserCommand command) {
+    /*public User handleUpdateUserCommand(UpdateUserCommand command) {
         User user = writeRepository.getUser(command.getUserId());
         user.setAddresses(command.getAddresses());
         user.setContacts(command.getContacts());
         writeRepository.addUser(user.getUserid(), user);
         return user;
-    }
+    }*/
 }

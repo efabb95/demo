@@ -7,3 +7,9 @@ spring:
           enabled: true
         host-port: localhost:9080
         project-id: prototyping-261511
+
+# custom properties
+config:
+  storage:
+    emulator-host: localhost:9199 # gcp starter does not have this property
+    default-bucket: prototyping-261511.appspot.com

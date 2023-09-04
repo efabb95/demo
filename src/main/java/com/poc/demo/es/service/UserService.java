@@ -1,7 +1,7 @@
 package com.poc.demo.es.service;
 
 import com.poc.demo.crud.repository.UserDocument;
-import com.poc.demo.crud.repository.UserRepositoryInterface;
+import com.poc.demo.crud.repository.UserRepository;
 import com.poc.demo.domain.*;
 import com.poc.demo.es.events.*;
 import com.poc.demo.es.repository.EventStore;
@@ -18,10 +18,10 @@ import java.util.Set;
 @Service
 public class UserService {
     private final EventStore repository;
-    private final UserRepositoryInterface userRepository;
+    private final UserRepository userRepository;
 
 
-    public UserService(EventStore repository, UserRepositoryInterface userRepository) {
+    public UserService(EventStore repository, UserRepository userRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
     }
@@ -39,7 +39,7 @@ public class UserService {
     }
     public User add(User user) throws Exception {
 
-        UserDocument doc =
+       UserDocument doc =
                 Optional.ofNullable(user)
                         .map(u -> new UserDocument(u.getFirstname(), u.getLastname()))
                         .orElseThrow(Exception::new);

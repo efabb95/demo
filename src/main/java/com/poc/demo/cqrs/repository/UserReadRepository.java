@@ -1,31 +1,31 @@
 package com.poc.demo.cqrs.repository;
 
-import com.poc.demo.domain.UserAddress;
-import com.poc.demo.domain.UserContact;
+import com.google.cloud.storage.Blob;
+import com.google.cloud.storage.Storage;
+import com.poc.demo.domain.StorageObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class UserReadRepository {
-    private final Map<String, UserAddress> userAddress = new HashMap<>();
+    private final Storage storage;
 
-    private final Map<String, UserContact> userContact = new HashMap<>();
+    private final String bucket;
 
-    public void addUserAddress(String id, UserAddress user) {
-        userAddress.put(id, user);
+    public UserReadRepository(Storage storage, @Value("${config.storage.default-bucket}") String bucket) {
+        this.storage = storage;
+        this.bucket = bucket;
     }
 
-    public UserAddress getUserAddress(String id) {
-        return userAddress.get(id);
-    }
+    public StorageObject rawRead(@NonNull String filename) {
 
-    public void addUserContact(String id, UserContact user) {
-        userContact.put(id, user);
-    }
+        final Blob blob = storage.get(bucket, filename);
 
-    public UserContact getUserContact(String id) {
-        return userContact.get(id);
+        return Optional.ofNullable(blob)
+                .map(b -> new StorageObject(bucket, filename, b.getSize(), b.getContent()))
+                .orElse(null);
     }
 }

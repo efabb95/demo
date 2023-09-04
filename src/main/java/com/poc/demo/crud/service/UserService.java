@@ -1,12 +1,6 @@
 package com.poc.demo.crud.service;
 
 import com.poc.demo.crud.repository.UserRepository;
-import com.poc.demo.domain.Address;
-import com.poc.demo.domain.Contact;
-import com.poc.demo.domain.User;
-
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class UserService {
 
@@ -17,7 +11,7 @@ public class UserService {
         this.repository = repository;
     }
 
-    public void createUser(String userId, String firstName, String lastName) {
+    /*public void createUser(String userId, String firstName, String lastName) {
         User user = new User(userId, firstName, lastName);
         repository.addUser(userId, user);
     }
@@ -51,5 +45,5 @@ public class UserService {
                 .filter(a -> a.getState()
                         .equals(state))
                 .collect(Collectors.toSet());
-    }
+    }*/
 }
